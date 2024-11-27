@@ -90,7 +90,6 @@ class ShortCut {
         }
         
         var callback = null;
-        console.log(event);
 
         this.runTimer();
 
