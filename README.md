@@ -30,11 +30,11 @@ import {ShortCut} from 'hi-shortcut'
 const shortcut = new ShortCut('alt')
 
 shortcut.listn('new_user', 'n',()=>{
-  // ....
+  // alt + n
 })
 
 shortcut.listn('remove_user', 'r',()=>{
-  // ....
+  // alt + r
 })
 ```
 
@@ -42,8 +42,8 @@ In the above example, the event is triggered when the user presses the alt and n
 But you can also use multiple key combinations like the code below.
 
 ```JS
-shortcut.listnMulti('remove_user', ['a', 'h', 'j'] ,()=>{
-  // ....
+shortcut.listnMulti('save_info', ['a', 'h', 'j'] ,()=>{
+  // alt a + h + j
 })
 ```
 The above event is executed when the alt, a, h, and j keys are pressed simultaneously.
@@ -52,8 +52,19 @@ Sometimes we may want to consider multiple key combinations for an event. For ex
 
 ```JS
 shortcut.listn('new_user', ['a','b','ش'],()=>{
-  // ....
+  // alt + a or alt + b or alt + ش
+})
+
+shortcut.listnMulti('remove_user', [ ['a','ش'], ['b', 'ذ']] ,()=>{
+  // alt + (a or ش) + (b or ذ)
 })
 ```
-The above event is triggered when the alt key is pressed with a or alt with b or alt with sh.
+The above event is triggered when the alt key is pressed with a or alt with b or alt with ش.
 This feature is especially useful for users who use multiple keyboards, who can customize their events for other keyboards and languages.
+
+To remove and disable a shortcut, you can use the `remove` method:
+
+```JS
+
+shortcut.remove('shortcut_name')
+```
