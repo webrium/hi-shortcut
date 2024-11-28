@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="content">hello</div>
+    
+    <script type="module" >
+        import {ShortCut} from './../index.js';
+
+        console.log('hello')
+        const shortcut = new ShortCut('alt');
+
+        shortcut.listen('print_hello', 'p', ()=>{
+            document.getElementById('content').innerHTML = '';
+        })
+
+        shortcut.listen('print_hello2', 'h', ()=>{
+            document.getElementById('content').innerHTML = 'fire keydown alt + h';
+        })
+
+        shortcut.listenMulti('test2', ['q', 's'], ()=>{
+            document.getElementById('content').innerHTML = 'fire keydown alt + q + s';
+        })
+
+
+        shortcut.listenMulti('test3', [['a', 'ش'], ['k','ن']], ()=>{
+            document.getElementById('content').innerHTML = 'fire keydown alt + a ش + k ن';
+            console.log(shortcut.listen_keys)
+        })
+
+        shortcut.listenMulti('test4', ['a', 'n'], ()=>{
+            document.getElementById('content').innerHTML = 'created new shortcut listener (alt + c) , for remove alt + x ';
+            shortcut.listen('test5', 'c',()=>{
+                document.getElementById('content').innerHTML = 'Hello world : alt + c';
+            })
+        })
+
+        shortcut.listen('test6', 'x', ()=>{
+            shortcut.remove('test5')
+            document.getElementById('content').innerHTML = 'alt + c event listener removed';
+        })
+
+        shortcut.listenMulti('test7', ['r', 'a'], ()=>{
+            document.getElementById('content').innerHTML = 'all event listener removed';
+            shortcut.removeAll()
+        })
+
+    </script>
+</body>
+</html>
