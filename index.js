@@ -70,6 +70,12 @@ class ShortCut {
         document.removeEventListener(this.event_type,this.listeners[name])
     }
 
+    removeAll(){
+        Object.keys(this.listeners).forEach(event=>{
+            this.remove(event)
+        })
+    }
+
     
     action(event, key, callback){
 
@@ -92,7 +98,6 @@ class ShortCut {
         var callback = null;
 
         this.runTimer();
-
 
         for (const key of args) {
             if (typeof key == 'function') {
@@ -117,7 +122,17 @@ class ShortCut {
             throw 'callback is not defined';
         }
 
-        if (this.listen_keys.length == args.length - 1) {
+        var confirm_index = 0;
+
+        for (const key of this.listen_keys) {
+            for (const key_arg of args) {
+                if ((Array.isArray(key_arg) && key.indexOf(key) > -1) || (typeof key_arg == 'string' && key == key_arg)) {
+                    confirm_index += 1;
+                }
+            }
+        }
+
+        if (this.listen_keys.length == args.length - 1 && confirm_index == args.length - 1) {
             this.listen_keys = [];
             clearTimeout(this.timeoutid);
             this.active_timer = false;
