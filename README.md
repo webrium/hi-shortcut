@@ -68,3 +68,9 @@ To remove and disable a shortcut, you can use the `remove` method:
 
 shortcut.remove('shortcut_name')
 ```
+
+To remove all events, use the `removeAll` method.
+
+```
+shortcut.removeAll()
+```
