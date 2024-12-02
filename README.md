@@ -29,11 +29,11 @@ import {ShortCut} from 'hi-shortcut'
 
 const shortcut = new ShortCut('alt')
 
-shortcut.listn('new_user', 'n',()=>{
+shortcut.listen('new_user', 'n',()=>{
   // alt + n
 })
 
-shortcut.listn('remove_user', 'r',()=>{
+shortcut.listen('remove_user', 'r',()=>{
   // alt + r
 })
 ```
