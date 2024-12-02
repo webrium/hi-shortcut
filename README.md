@@ -42,7 +42,7 @@ In the above example, the event is triggered when the user presses the alt and n
 But you can also use multiple key combinations like the code below.
 
 ```JS
-shortcut.listnMulti('save_info', ['a', 'h', 'j'] ,()=>{
+shortcut.listenMulti('save_info', ['a', 'h', 'j'] ,()=>{
   // alt a + h + j
 })
 ```
@@ -51,11 +51,11 @@ The above event is executed when the alt, a, h, and j keys are pressed simultane
 Sometimes we may want to consider multiple key combinations for an event. For example, we want the same operation to be performed when the user presses the alt and a key or presses the alt and b keys (multiple similar shortcuts).
 
 ```JS
-shortcut.listn('new_user', ['a','b','ش'],()=>{
+shortcut.listen('new_user', ['a','b','ش'],()=>{
   // alt + a or alt + b or alt + ش
 })
 
-shortcut.listnMulti('remove_user', [ ['a','ش'], ['b', 'ذ']] ,()=>{
+shortcut.listenMulti('remove_user', [ ['a','ش'], ['b', 'ذ']] ,()=>{
   // alt + (a or ش) + (b or ذ)
 })
 ```
